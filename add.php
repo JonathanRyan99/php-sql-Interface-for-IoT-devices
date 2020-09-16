@@ -1,9 +1,28 @@
 <?php
+    //doesnt allow for empty fields to be submitted
     if(isset($_POST['submit'])){
-        echo $_POST['name'];
-        echo $_POST['device_IP'];
-        echo $_POST['device_status'];
-    }
+        
+        if empty($_POST['name']){
+            echo "name is a required field <br />";
+        }
+        else{
+            echo htmlspecialchars($_POST['name']);
+        }
+        
+        if empty($_POST['device_IP']){
+            echo "Device IP is a required field <br />";
+        }
+        else{
+            echo htmlspecialchars($_POST['device_IP']);
+        }
+       
+        if empty($_POST['device_status']){
+            echo "device status is a required field <br />";
+        }
+        else{
+            echo htmlspecialchars($_POST['device_status']);
+        }
+    }//end of post check
 
 ?>
 <html>

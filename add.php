@@ -1,5 +1,9 @@
 <?php
-
+    if(isset($_POST['submit'])){
+        echo $_POST['name'];
+        echo $_POST['device_IP'];
+        echo $_POST['device_status'];
+    }
 
 ?>
 <html>
@@ -10,7 +14,7 @@
 
     <section class="container grey-text">
         <h4 class="center">Add Device</h4>
-        <form class="white" action="" method="" > 
+        <form class="white" action="" method="POST" > 
             <label>Device Name</label>
             <input type="text" name="name">
         

@@ -29,12 +29,14 @@
                 echo "Not a valid IP <br />";
             } 
         }
-       
+        
+        //maybe make this a boolean or int  0/1
         if (empty($_POST['device_status'])){
             echo "device status is a required field <br />";
         }
         else{
-            echo htmlspecialchars($_POST['device_status']);
+            $status = $_POST['device_status'];
+            echo htmlspecialchars($status);
         }
     }//end of post check
 

@@ -1,5 +1,5 @@
 <?php
-    //doesnt allow for empty fields to be submitted
+    //checks for empty fields to be submitted
     if(isset($_POST['submit'])){
         
         if (empty($_POST['name'])){
@@ -13,7 +13,12 @@
             echo "Device IP is a required field <br />";
         }
         else{
-            echo htmlspecialchars($_POST['device_IP']);
+            if(filter_var($_POST['device_IP'],FILTER_VALIDATE_IP)){
+                echo htmlspecialchars($_POST['device_IP']);
+            }
+            else{
+                echo "Not a valid IP";
+            } 
         }
        
         if (empty($_POST['device_status'])){

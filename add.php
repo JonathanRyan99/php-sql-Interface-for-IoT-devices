@@ -6,18 +6,27 @@
             echo "name is a required field <br />";
         }
         else{
-            echo htmlspecialchars($_POST['name']);
+            $name = $_POST['name'];
+            if(preg_match('/^[a-zA-Z\s]+$/',$name)){
+                echo htmlspecialchars($name);
+            }
+            else{
+                echo "name can only contain letters and spaces";
+            }
+            
+            
         }
         
         if (empty($_POST['device_IP'])){
             echo "Device IP is a required field <br />";
         }
         else{
-            if(filter_var($_POST['device_IP'],FILTER_VALIDATE_IP)){
-                echo htmlspecialchars($_POST['device_IP']);
+            $IP = $_POST['device_IP'];
+            if(filter_var($IP,FILTER_VALIDATE_IP)){
+                echo htmlspecialchars($IP);
             }
             else{
-                echo "Not a valid IP";
+                echo "Not a valid IP <br />";
             } 
         }
        

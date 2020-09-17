@@ -1,7 +1,8 @@
 <?php
     $errors = array('name'=>'','IP'=>'','status'=>'');
     
-    $name = $IP = $status = ''; //this works because they're all strings
+    $name = $IP = $status = ''; //this works because they're all strings 
+    //allows for unser input persistance
     //checks for empty fields to be submitted
     if(isset($_POST['submit'])){
         
@@ -46,6 +47,12 @@
                 $errors['status'] = "status can only contain letters and spaces";
             }
         }
+        //built infunction, array_filter turns true for populated array false for not
+        if(!array_filter($errors)){
+            header('Location: index.php');//returns user to index page if no errors found
+
+        }
+
     }//end of post check
 
 ?>
@@ -59,15 +66,15 @@
         <h4 class="center">Add Device</h4>
         <form class="white" action="" method="POST" > 
             <label>Device Name</label>
-            <input type="text" name="name" value=<?php echo $name ?> > 
+            <input type="text" name="name" value=<?php echo htmlspecialchars($name) ?> > 
             <div class="red-text"><?php echo $errors['name'] ?></div>
 
             <label>Device IP</label>
-            <input type="text" name="device_IP" value=<?php echo $IP ?>>
+            <input type="text" name="device_IP" value=<?php echo htmlspecialchars($IP) ?>>
             <div class="red-text"><?php echo $errors['IP'] ?></div>
 
             <label>Device Status</label>
-            <input type="text" name="device_status" value=<?php echo $status ?>>
+            <input type="text" name="device_status" value=<?php echo htmlspecialchars($status) ?>>
             <div class="red-text"><?php echo $errors['status'] ?></div>
 
 

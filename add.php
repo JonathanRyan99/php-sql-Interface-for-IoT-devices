@@ -1,4 +1,7 @@
 <?php
+    $errors = array('name'=>'','IP'=>'','status'=>'');
+    
+    
     //checks for empty fields to be submitted
     if(isset($_POST['submit'])){
         
@@ -11,7 +14,7 @@
                 echo htmlspecialchars($name);
             }
             else{
-                echo "name can only contain letters and spaces";
+                $errors['name'] = "name can only contain letters and spaces";
             }
             
             
@@ -26,7 +29,7 @@
                 echo htmlspecialchars($IP);
             }
             else{
-                echo "Not a valid IP <br />";
+                $errors['IP'] = "Not a valid IP <br />";
             } 
         }
         
@@ -36,7 +39,12 @@
         }
         else{
             $status = $_POST['device_status'];
-            echo htmlspecialchars($status);
+            if(preg_match('/^[a-zA-Z\s]+$/',$status)){
+                echo htmlspecialchars($status);
+            }
+            else{
+                $errors['status'] = "status can only contain letters and spaces";
+            }
         }
     }//end of post check
 
@@ -52,12 +60,17 @@
         <form class="white" action="" method="POST" > 
             <label>Device Name</label>
             <input type="text" name="name">
-        
+            <div class="red-text"><?php echo $errors['name'] ?></div>
+
             <label>Device IP</label>
             <input type="text" name="device_IP">
-        
+            <div class="red-text"><?php echo $errors['IP'] ?></div>
+
             <label>Device Status</label>
             <input type="text" name="device_status">
+            <div class="red-text"><?php echo $errors['status'] ?></div>
+
+
             <div class="center">
                 <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
             </div>

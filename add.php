@@ -1,12 +1,12 @@
 <?php
     $errors = array('name'=>'','IP'=>'','status'=>'');
     
-    
+    $name = $IP = $status = ''; //this works because they're all strings
     //checks for empty fields to be submitted
     if(isset($_POST['submit'])){
         
         if (empty($_POST['name'])){
-            echo "name is a required field <br />";
+            $errors['name'] = "name is a required field <br />";
         }
         else{
             $name = $_POST['name'];
@@ -21,7 +21,7 @@
         }
         
         if (empty($_POST['device_IP'])){
-            echo "Device IP is a required field <br />";
+            $errors['IP'] = "Device IP is a required field <br />";
         }
         else{
             $IP = $_POST['device_IP'];
@@ -35,7 +35,7 @@
         
         //maybe make this a boolean or int  0/1
         if (empty($_POST['device_status'])){
-            echo "device status is a required field <br />";
+            $errors['status'] = "device status is a required field <br />";
         }
         else{
             $status = $_POST['device_status'];
@@ -59,15 +59,15 @@
         <h4 class="center">Add Device</h4>
         <form class="white" action="" method="POST" > 
             <label>Device Name</label>
-            <input type="text" name="name">
+            <input type="text" name="name" value=<?php echo $name ?> > 
             <div class="red-text"><?php echo $errors['name'] ?></div>
 
             <label>Device IP</label>
-            <input type="text" name="device_IP">
+            <input type="text" name="device_IP" value=<?php echo $IP ?>>
             <div class="red-text"><?php echo $errors['IP'] ?></div>
 
             <label>Device Status</label>
-            <input type="text" name="device_status">
+            <input type="text" name="device_status" value=<?php echo $status ?>>
             <div class="red-text"><?php echo $errors['status'] ?></div>
 
 

@@ -1,6 +1,6 @@
 <?php
     //this contains the connection code so it can be imported as needed
-   include('config/db_config.php');
+    include('config/db_config.php');
 
     //select all devices
     $sql = 'SELECT name, ip, status FROM devices';

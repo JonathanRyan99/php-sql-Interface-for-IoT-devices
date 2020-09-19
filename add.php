@@ -1,4 +1,9 @@
 <?php
+    
+    //connect to db
+    include('config/db_config.php');
+    
+    
     $errors = array('name'=>'','IP'=>'','status'=>'');
     
     $name = $IP = $status = ''; //this works because they're all strings 
@@ -49,7 +54,25 @@
         }
         //built infunction, array_filter turns true for populated array false for not
         if(!array_filter($errors)){
-            header('Location: index.php');//returns user to index page if no errors found
+            //over write old varibles (that were fine for html) with data that is prepared now for sql 
+            $name = mysqli_real_escape_string($conn, $_POST['name']);
+            $IP = mysqli_real_escape_string($conn, $_POST['device_IP']);
+            $status = mysqli_real_escape_string($conn, $_POST['device_status']);
+            //make sql query
+            $sql = "INSERT INTO devices(name,ip,status) VALUES('$name','$IP','$status')";
+            
+            //send and check query
+            if(mysqli_query($conn,$sql)){
+                //successful returns user to index page if no errors found
+                header('Location: index.php');
+            }
+            else{
+                echo 'Query error: ' . mysqli_error($conn);
+            }
+            
+            
+            
+            
 
         }
 

@@ -1,11 +1,6 @@
 <?php
-    //database connection
-    $conn = mysqli_connect('localhost','testuser','test1234','iot_devices');
-
-    //check connection 
-    if(!$conn){
-        echo 'Connection error: ' . mysqli_connect_error();
-    }
+    //this contains the connection code so it can be imported as needed
+   include('config/db_config.php');
 
     //select all devices
     $sql = 'SELECT name, ip, status FROM devices';

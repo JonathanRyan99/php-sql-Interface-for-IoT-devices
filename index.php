@@ -22,7 +22,7 @@
     //close the connection
     mysqli_close($conn);
     
-    print_r($devices);
+    //print_r($devices);
 
     
 
@@ -32,7 +32,28 @@
 
 
     <?php include('templates/header.php'); ?>
-  
+
+    <h4 class = "center grey-text">devices</h4>
+    <div class="container">
+        <div class = "row">
+            <?php foreach($devices as $device){  ?>
+
+                <div class="col s6 md3 ">
+                    <div class=" card z-depth-0">
+                        <div class="card-content center">
+                            <h6> <?php echo htmlspecialchars($device['name']); ?> </h6>
+                            <h6> <?php echo htmlspecialchars($device['ip']); ?> </h6>
+                            <h6> <?php echo htmlspecialchars($device['status']); ?> </h6>
+                        </div>    
+                    </div>
+                </div>
+
+
+
+
+            <?php } ?>
+        </div>
+    </div>
     <?php include('templates/footer.php'); ?>  
 
 
